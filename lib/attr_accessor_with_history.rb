@@ -10,11 +10,11 @@ class Class
       
       if !defined? @#{attr_name}_history
         @#{attr_name}_history = [@#{attr_name}]
+      elsif value !=  @#{attr_name}
+        @#{attr_name}_history.push(@#{attr_name})
       end
-  
+      
       @#{attr_name} = value
-      @#{attr_name}_history.push(value)
-    
       end 
       
     }
