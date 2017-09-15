@@ -15,22 +15,10 @@ module FunWithStrings
     false
   end
   
-  
-  
-  
   def count_words
     self.downcase!
-    
-    split_text = self.split(" ")
-    
-    split_text.each {|x| x.to_s
-      x.each_char{|y| 
-        if /\W/ === y 
-          delete!(y)
-        end
-      }
-      
-    }
+    self.gsub!(/[.!?\\-\\-\\,]/, "")
+    split_text = self.split
     
      frequencies = Hash.new(0)
     split_text.each { |word| frequencies[word] += 1 }
@@ -40,7 +28,24 @@ module FunWithStrings
   
   
   def anagram_groups
-    @angrams.each { |group| group.sort!}
+    array = self.split 
+     rtnArr = []
+     
+    
+    for i in 0...array.length
+      p = array[i].downcase.chars.sort.join
+      temp = [array[i]]
+      for j in i+1...array.length
+        s = array[j].downcase.chars.sort.join
+        if p==s
+          temp.push(array[j])
+        end
+        if j ==array.length-1
+          rtnArr.push(temp)
+        end
+      end
+    end
+      return rtnArr
   end
 end
 
@@ -49,3 +54,5 @@ end
 class String
   include FunWithStrings
 end
+
+
